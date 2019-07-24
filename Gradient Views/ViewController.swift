@@ -9,12 +9,28 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        view.setGradient(colorOne: .purple, colorTwo: .orange)
     }
-
-
+    
 }
 
+
+
+
+extension UIView {
+    func setGradient(colorOne: UIColor, colorTwo: UIColor) {
+        let gradientView = CAGradientLayer()
+        gradientView.frame = self.bounds
+        gradientView.colors = [colorOne.cgColor, colorTwo.cgColor]
+        gradientView.locations = [0.0, 1.0]
+        gradientView.startPoint = CGPoint(x: 0.0, y: 0.0)
+        gradientView.endPoint = CGPoint(x: 1.0, y: 1.0)
+        layer.insertSublayer(gradientView, at: 0)
+    }
+    
+}
